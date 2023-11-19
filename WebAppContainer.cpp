@@ -85,27 +85,6 @@ void WebAppContainer::removeFromArray(int index) {
     }
 }
 
-//void WebAppContainer::editInCointainer(int index, ContainerType cT, string& name)
-//{
-//    if (cT == ContainerType::Vector) {
-//        if (index >= 0 && index < apps_vector.size()) {
-//            apps_vector[index].setName(name);
-//        }
-//    }
-//    if (cT == ContainerType::List) {
-//        auto it = apps_list.begin();
-//        advance(it, index);
-//        if (it != apps_list.end()) {
-//            it->setName(name);
-//        }
-//    }
-//    if (cT == ContainerType::Array) {
-//        if (index >= 0 && index < current_arr_index) {
-//            app_array[index].setName(name);
-//        }
-//    }
-//}
-
 
 int WebAppContainer::searchByName(const string& name, ContainerType cT)
 {
@@ -119,6 +98,92 @@ int WebAppContainer::searchByName(const string& name, ContainerType cT)
     }
 }
 
+void WebAppContainer::editName(int index, ContainerType cT, string& name)
+{
+    if (cT == ContainerType::Vector) {
+        if (index >= 0 && index < apps_vector.size()) {
+            apps_vector[index].setName(name);
+        }
+    }
+    if (cT == ContainerType::List) {
+        auto it = apps_list.begin();
+        advance(it, index);
+        if (it != apps_list.end()) {
+            it->setName(name);
+        }
+    }
+    if (cT == ContainerType::Array) {
+        if (index >= 0 && index < current_arr_index) {
+            app_array[index].setName(name);
+        }
+    }
+}
+
+void WebAppContainer::editCreator(int index, ContainerType cT, string& creator)
+{
+    if (cT == ContainerType::Vector) {
+        if (index >= 0 && index < apps_vector.size()) {
+            apps_vector[index].setCreator(creator);
+        }
+    }
+    if (cT == ContainerType::List) {
+        auto it = apps_list.begin();
+        advance(it, index);
+        if (it != apps_list.end()) {
+            it->setCreator(creator);
+        }
+    }
+    if (cT == ContainerType::Array) {
+        if (index >= 0 && index < current_arr_index) {
+            app_array[index].setCreator(creator);
+        }
+    }
+}
+
+
+void WebAppContainer::editCountOfUsers(int index, ContainerType cT, int count_of_users)
+{
+    if (cT == ContainerType::Vector) {
+        if (index >= 0 && index < apps_vector.size()) {
+            apps_vector[index].setCountOfUsers(count_of_users);
+        }
+    }
+    if (cT == ContainerType::List) {
+        auto it = apps_list.begin();
+        advance(it, index);
+        if (it != apps_list.end()) {
+            it->setCountOfUsers(count_of_users);
+        }
+    }
+    if (cT == ContainerType::Array) {
+        if (index >= 0 && index < current_arr_index) {
+            app_array[index].setCountOfUsers(count_of_users);
+        }
+    }
+}
+
+
+void WebAppContainer::editRating(int index, ContainerType cT, double rating)
+{
+    if (cT == ContainerType::Vector) {
+        if (index >= 0 && index < apps_vector.size()) {
+            apps_vector[index].setRating(rating);
+        }
+    }
+    if (cT == ContainerType::List) {
+        auto it = apps_list.begin();
+        advance(it, index);
+        if (it != apps_list.end()) {
+            it->setRating(rating);
+        }
+    }
+    if (cT == ContainerType::Array) {
+        if (index >= 0 && index < current_arr_index) {
+            app_array[index].setRating(rating);
+        }
+    }
+}
+
 int WebAppContainer::findNameInVector(const string& name) {
     auto it = find_if(apps_vector.begin(), apps_vector.end(),
         [&name](const WebApp& app) { return app.getName() == name; });
@@ -127,6 +192,7 @@ int WebAppContainer::findNameInVector(const string& name) {
     }
     return -1;
 }
+
 
 int WebAppContainer::findNameInList(const string& name) {
     auto it = find_if(apps_list.begin(), apps_list.end(),
@@ -145,6 +211,7 @@ int WebAppContainer::findNameInArray(const string& name) {
     }
     return -1;
 }
+
 
 void WebAppContainer::printContainer(ContainerType cT)
 {

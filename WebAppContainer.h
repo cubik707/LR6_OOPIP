@@ -41,7 +41,10 @@ public:
 	void removeFromList(int index);
 	void removeFromArray(int index);
 
-	void editInVector(int index, ContainerType cT, string& name);
+	void editName(int index, ContainerType cT, string& name);
+	void editCreator(int index, ContainerType cT, string& creator);
+	void editCountOfUsers(int index, ContainerType cT, int count_of_users);
+	void editRating(int index, ContainerType cT, double rating);
 	//void editInList()
 
 	int searchByName(const string& name, ContainerType cT);

@@ -55,7 +55,7 @@ void Menu::showUserMenu(ContainerType cT)
 			removeWebApp(cT);
 			break;
 		case 4:
-
+			editWebApp(cT);
 			break;
 		case 5:
 
@@ -144,18 +144,7 @@ void Menu::editWebApp(ContainerType cT)
 	Validator::convert(name);
 	int index = WebAppContainer::getInstance()->searchByName(name, cT);
 	if (index != -1) {
-
-		switch (cT) {
-		case ContainerType::Vector:
-			WebAppContainer::getInstance()->removeFromVector(index);
-			break;
-		case ContainerType::List:
-			WebAppContainer::getInstance()->removeFromList(index);
-			break;
-		case ContainerType::Array:
-			WebAppContainer::getInstance()->removeFromArray(index);
-			break;
-		}
+		editMenu(cT, index);
 		cout << "Приложение успешно удалено!" << endl;
 	}
 	else {
@@ -164,7 +153,7 @@ void Menu::editWebApp(ContainerType cT)
 	return;
 }
 
-void Menu::editMenu()
+void Menu::editMenu(ContainerType cT, int index)
 {
 	while (true)
 	{
@@ -175,18 +164,31 @@ void Menu::editMenu()
 		cout << "4 - Рейтинг" << endl;
 		cout << "0 - Назад" << endl;
 		int choice = Validator::getIntVar(0, 6);
+		string name, creator,
+		int count_of_users;
+		double rating;
 		switch (choice) {
 		case 1:
-			
+			cout << "Введите новое имя: ";
+			name = Validator::getValidStr();
+			Validator::convert(name);
+			WebAppContainer::getInstance()->editName(index, cT, name);
 			break;
 		case 2:
-			
+			cout << "Введите нового производителя: ";
+			creator = Validator::getValidStr();
+			Validator::convert(creator);
+			WebAppContainer::getInstance()->editCreator(index, cT, creator);
 			break;
 		case 3:
-			
+			cout << "Введите новое количество пользователей: ";
+			count_of_users = Validator::getIntVar(0, INT_MAX);
+			WebAppContainer::getInstance()->editCountOfUsers(index, cT, count_of_users);
 			break;
 		case 4:
-
+			cout << "Введите новый рейтнг: ";
+			rating = Validator::getDoubleVar(0, 10);
+			WebAppContainer::getInstance()->editRating(index, cT, rating);
 			break;
 		case 0:
 			return;
