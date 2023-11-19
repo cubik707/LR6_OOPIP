@@ -11,16 +11,15 @@ void Menu::showContainerMenu()
 	printLine(40);
 	int choice = Validator::getIntVar(0, 3);
 
-
 	switch (choice) {
 	case 1:
-		admin->displayMenu();
+		showUserMenu(ContainerType::Vector);
 		break;
 	case 2:
-		cout << "Âגוהטעו גאר ב‏הזוע: " << endl;
-		budget = validDouble.getVar(0, INT_MAX);
-		user->setBudget(budget);
-		user->displayMenu();
+		showUserMenu(ContainerType::List);
+		break;
+	case 3:
+		showUserMenu(ContainerType::Array);
 		break;
 	case 0:
 		exit(0);
