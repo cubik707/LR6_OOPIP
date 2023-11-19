@@ -49,7 +49,7 @@ void WebAppContainer::printTableFields(int length)
 
 void WebAppContainer::printContainer(ContainerType cT)
 {
-    int length = 89, i = 1;
+    int length = 74, i = 1;
 
     printTableFields(length);
 
@@ -75,6 +75,7 @@ void WebAppContainer::printContainer(ContainerType cT)
         }
         break;
     }
+    printLine(length);
 }
 
 void WebAppContainer::fillContainer(ifstream& file, ContainerType cT)
