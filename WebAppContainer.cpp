@@ -69,9 +69,9 @@ void WebAppContainer::printContainer(ContainerType cT)
         break;
 
     case ContainerType::Array:
-        for (const auto& app : app_array) {
+        for (int index = 0; index < current_arr_index; ++index) {
             cout << left << setw(5) << "| " + to_string(i++);
-            app.print();
+            app_array[index].print();
         }
         break;
     }
@@ -96,6 +96,7 @@ void WebAppContainer::fillContainer(ifstream& file, ContainerType cT)
     if (cT == ContainerType::Array) {
         for (int i = 0; i < app_array.size() and file >> webApp; ++i) {
             app_array[i] = webApp;
+            ++current_arr_index;
         }
     }
 }
