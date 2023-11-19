@@ -33,5 +33,30 @@ void Menu::showContainerMenu()
 
 void Menu::showUserMenu(ContainerType cT)
 {
+	while (true)
+	{
+		cout << left << "Меню: " << endl;
+		cout << "1 - Вывод данных" << endl;
+		cout << "2 - Добавить данные" << endl;
+		cout << "3 - Удалить данные" << endl;
+		cout << "4 - Редактировать данные" << endl;
+		cout << "5 - Поиск" << endl;
+		cout << "6 - Сортировка" << endl;
+		cout << "0 - Выход" << endl;
+		int choice = Validator::getIntVar(0, 6);
+		switch (choice) {
+		case 1:
+			WebAppContainer::getInstance()->printContainer(cT);
+			break;
+		case 2:
 
+			break;
+		case 3:
+
+			break;
+		case 0:
+			exit(0);
+		}
+	}
 }
+
