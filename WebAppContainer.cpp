@@ -58,7 +58,30 @@ void WebAppContainer::addToArray(const WebApp& webApp)
         app_array[current_arr_index++] = webApp;
     }
     else {
-        cout << "Недостаточно места в array!" << endl;
+        throw runtime_error("Недостаточно места в array!");
+    }
+}
+
+void WebAppContainer::removeFromVector(int index) {
+    if (index >= 0 && index < apps_vector.size()) {
+        apps_vector.erase(apps_vector.begin() + index);
+    }
+}
+
+void WebAppContainer::removeFromList(int index) {
+    auto it = apps_list.begin();
+    advance(it, index);
+    if (it != apps_list.end()) {
+        apps_list.erase(it);
+    }
+}
+
+void WebAppContainer::removeFromArray(int index) {
+    if (index >= 0 && index < current_arr_index) {
+        for (int i = index; i < current_arr_index - 1; ++i) {
+            app_array[i] = app_array[i + 1];
+        }
+        --current_arr_index;
     }
 }
 
@@ -92,7 +115,7 @@ int WebAppContainer::findNameInList(const string& name) {
     return -1;
 }
 
-int WebAppContainer::findNameInList(const string& name) {
+int WebAppContainer::findNameInArray(const string& name) {
     for (int i = 0; i < current_arr_index; ++i) {
         if (app_array[i].getName() == name) {
             return i;

@@ -88,9 +88,18 @@ void Menu::addWebApp(ContainerType cT)
 		WebAppContainer::getInstance()->addToList(webApp);
 		break;
 	case ContainerType::Array:
-		WebAppContainer::getInstance()->addToArray(webApp);
+		try
+		{
+			WebAppContainer::getInstance()->addToArray(webApp);
+		}
+		catch (const runtime_error& e)
+		{
+			cerr << e.what() << endl;
+			return;
+		}	
 		break;
 	}
+	cout << "Веб-приложение успешно добавлено!";
 }
 
 void Menu::removeWebApp(ContainerType cT)
@@ -98,6 +107,24 @@ void Menu::removeWebApp(ContainerType cT)
 	cout << "Введите имя веб-приложения, которое вы хотите удалить: ";
 	string name = Validator::getValidStr();
 	Validator::convert(name);
-
+	int index = WebAppContainer::getInstance()->searchByName(name, cT);
+	if (index != -1) {
+		switch (cT) {
+		case ContainerType::Vector:
+			WebAppContainer::getInstance()->removeFromVector(index);
+			break;
+		case ContainerType::List:
+			WebAppContainer::getInstance()->removeFromList(index);
+			break;
+		case ContainerType::Array:
+			WebAppContainer::getInstance()->removeFromArray(index);
+			break;
+		}
+		cout << "Приложение успешно удалено!" << endl;
+	}
+	else {
+		cout << "Такого приложения нет в базе данных!" << endl;
+	}
+	return;
 }
 
