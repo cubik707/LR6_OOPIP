@@ -20,7 +20,15 @@ private:
 	list<WebApp> apps_list;
 	array<WebApp, 20> app_array;
 	int current_arr_index;
+
+	static WebAppContainer* instance;
+	WebAppContainer() {};
 public:
+	static WebAppContainer* getInstance();
+	WebAppContainer(const WebAppContainer&) = delete;
+	WebAppContainer& operator=(WebAppContainer&) = delete;
+	~WebAppContainer();
+
 	void readFromFile(ContainerType cT);
 	void fillContainer(ifstream& file, ContainerType cT);
 	
