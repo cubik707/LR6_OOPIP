@@ -67,11 +67,11 @@ void Menu::addWebApp(ContainerType cT)
 	double ratity;
 	cout << "¬ведите название веб-приложени€: ";
 	name = Validator::getValidStr();
-	Validator::toLowercase(name);
+	Validator::convert(name);
 
 	cout << "¬ведите производител€: ";
 	creator = Validator::getValidStr();
-	Validator::toLowercase(creator);
+	Validator::convert(creator);
 
 	cout << "¬ведите количество пользователей: ";
 	count_of_users = Validator::getIntVar(0, INT_MAX);
@@ -91,5 +91,13 @@ void Menu::addWebApp(ContainerType cT)
 		WebAppContainer::getInstance()->addToArray(webApp);
 		break;
 	}
+}
+
+void Menu::removeWebApp(ContainerType cT)
+{
+	cout << "¬ведите им€ веб-приложени€, которое вы хотите удалить: ";
+	string name = Validator::getValidStr();
+	Validator::convert(name);
+
 }
 

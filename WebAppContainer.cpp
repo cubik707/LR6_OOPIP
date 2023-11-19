@@ -62,6 +62,45 @@ void WebAppContainer::addToArray(const WebApp& webApp)
     }
 }
 
+int WebAppContainer::searchByName(const string& name, ContainerType cT)
+{
+    switch (cT) {
+    case ContainerType::Vector:
+        return findNameInVector(name);
+    case ContainerType::List:
+        return findNameInList(name);
+    case ContainerType::Array:
+        return findNameInArray(name);
+    }
+}
+
+int WebAppContainer::findNameInVector(const string& name) {
+    auto it = find_if(apps_vector.begin(), apps_vector.end(),
+        [&name](const WebApp& app) { return app.getName() == name; });
+    if (it != apps_vector.end()) {
+        return distance(apps_vector.begin(), it);
+    }
+    return -1;
+}
+
+int WebAppContainer::findNameInList(const string& name) {
+    auto it = find_if(apps_list.begin(), apps_list.end(),
+        [&name](const WebApp& app) { return app.getName() == name; });
+    if (it != apps_list.end()) {
+        return distance(apps_list.begin(), it);
+    }
+    return -1;
+}
+
+int WebAppContainer::findNameInList(const string& name) {
+    for (int i = 0; i < current_arr_index; ++i) {
+        if (app_array[i].getName() == name) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void WebAppContainer::printContainer(ContainerType cT)
 {
     int length = 74, i = 1;

@@ -4,6 +4,7 @@
 #include <vector>
 #include <list>
 #include <array>
+#include <iterator>
 
 enum class ContainerType
 {
@@ -35,6 +36,15 @@ public:
 	void addToVector(const WebApp& webApp);
 	void addToList(const WebApp& webApp);
 	void addToArray(const WebApp& webApp);
+
+	void removeFromVector(int index);
+	void removeFromList(int index);
+	void removeFromArray(int index);
+
+	int searchByName(const string& name, ContainerType cT);
+	int findNameInVector(const string& name);
+	int findNameInList(const string& name);
+	int findNameInArray(const string& name);
 	
 	void printContainer(ContainerType cT);
 	void printTableFields(int length);

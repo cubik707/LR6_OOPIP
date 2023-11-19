@@ -11,5 +11,6 @@ public:
 	void showUserMenu(ContainerType cT);
 
 	void addWebApp(ContainerType cT);
+	void removeWebApp(ContainerType cT);
 };
 

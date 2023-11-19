@@ -11,7 +11,7 @@ public:
 	static int getIntVar(int minLim, int maxLim);
 	static double getDoubleVar(double minLim, double maxLim);
 	static string getValidStr();
-	static void toLowercase(std::string& str);
+	static void convert(std::string& str);
 };
 
 void printLine(int length);

@@ -79,10 +79,13 @@ string Validator::getValidStr()
 	return str;
 }
 
-void Validator::toLowercase(std::string& str)
+void Validator::convert(std::string& str)
 {
-	for (auto& c : str) {
-		c = std::tolower(static_cast<unsigned char>(c));
+	if (!str.empty()) {
+		str[0] = toupper(str[0]);
+		for (int i = 1; i < str.length(); i++) {
+			str[i] = tolower(str[i]);
+		}
 	}
 }
 
