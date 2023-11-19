@@ -12,5 +12,7 @@ public:
 
 	void addWebApp(ContainerType cT);
 	void removeWebApp(ContainerType cT);
+	void editWebApp(ContainerType cT);
+	void editMenu();
 };
 

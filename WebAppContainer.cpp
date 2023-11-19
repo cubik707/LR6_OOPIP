@@ -85,6 +85,28 @@ void WebAppContainer::removeFromArray(int index) {
     }
 }
 
+//void WebAppContainer::editInCointainer(int index, ContainerType cT, string& name)
+//{
+//    if (cT == ContainerType::Vector) {
+//        if (index >= 0 && index < apps_vector.size()) {
+//            apps_vector[index].setName(name);
+//        }
+//    }
+//    if (cT == ContainerType::List) {
+//        auto it = apps_list.begin();
+//        advance(it, index);
+//        if (it != apps_list.end()) {
+//            it->setName(name);
+//        }
+//    }
+//    if (cT == ContainerType::Array) {
+//        if (index >= 0 && index < current_arr_index) {
+//            app_array[index].setName(name);
+//        }
+//    }
+//}
+
+
 int WebAppContainer::searchByName(const string& name, ContainerType cT)
 {
     switch (cT) {

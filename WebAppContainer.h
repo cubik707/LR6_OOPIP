@@ -41,6 +41,9 @@ public:
 	void removeFromList(int index);
 	void removeFromArray(int index);
 
+	void editInVector(int index, ContainerType cT, string& name);
+	//void editInList()
+
 	int searchByName(const string& name, ContainerType cT);
 	int findNameInVector(const string& name);
 	int findNameInList(const string& name);

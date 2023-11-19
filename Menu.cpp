@@ -52,7 +52,16 @@ void Menu::showUserMenu(ContainerType cT)
 			addWebApp(cT);
 			break;
 		case 3:
+			removeWebApp(cT);
+			break;
+		case 4:
 
+			break;
+		case 5:
+
+			break;
+		case 6:
+			
 			break;
 		case 0:
 			return;
@@ -126,5 +135,62 @@ void Menu::removeWebApp(ContainerType cT)
 		cout << "Такого приложения нет в базе данных!" << endl;
 	}
 	return;
+}
+
+void Menu::editWebApp(ContainerType cT)
+{
+	cout << "Введите имя веб-приложения, которое вы хотите изменить: ";
+	string name = Validator::getValidStr();
+	Validator::convert(name);
+	int index = WebAppContainer::getInstance()->searchByName(name, cT);
+	if (index != -1) {
+
+		switch (cT) {
+		case ContainerType::Vector:
+			WebAppContainer::getInstance()->removeFromVector(index);
+			break;
+		case ContainerType::List:
+			WebAppContainer::getInstance()->removeFromList(index);
+			break;
+		case ContainerType::Array:
+			WebAppContainer::getInstance()->removeFromArray(index);
+			break;
+		}
+		cout << "Приложение успешно удалено!" << endl;
+	}
+	else {
+		cout << "Такого приложения нет в базе данных!" << endl;
+	}
+	return;
+}
+
+void Menu::editMenu()
+{
+	while (true)
+	{
+		cout << left << "Что вы хотите изменить? " << endl;
+		cout << "1 - Имя" << endl;
+		cout << "2 - Производителя" << endl;
+		cout << "3 - Количество пользователей" << endl;
+		cout << "4 - Рейтинг" << endl;
+		cout << "0 - Назад" << endl;
+		int choice = Validator::getIntVar(0, 6);
+		switch (choice) {
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			
+			break;
+		case 4:
+
+			break;
+		case 0:
+			return;
+		}
+	}
 }
 
