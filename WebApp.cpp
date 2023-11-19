@@ -12,11 +12,11 @@ WebApp::WebApp(const string& name, const string& creator, int count_of_users, do
 
 void WebApp::print() const
 {
-    cout.setf(ios::left);
-    cout << "| " << setw(20) << name;
-    cout << "| " << setw(20) << creator;
-    cout << "| " << setw(10) << count_of_users;
-    cout << "| " << fixed << setprecision(2) << setw(10) << rating << "|" << endl;
+   cout.setf(ios::left);
+   cout << "| " << setw(18) << name;
+   cout << "| " << setw(18) << creator;
+   cout << "| " << setw(13) << count_of_users;
+   cout << "| " << fixed << setprecision(2) << setw(13) << rating << "|" <
     cout.unsetf(ios::left);
 }
 
