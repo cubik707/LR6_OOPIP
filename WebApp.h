@@ -13,6 +13,7 @@ private:
 	int count_of_users;
 	double rating;
 public:
+    WebApp();
 	WebApp(const string& name, const string& creator, int count_of_users, double rating);
 
     // Геттеры

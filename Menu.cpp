@@ -25,3 +25,7 @@ void Menu::showContainerMenu()
 		exit(0);
 	}
 }
+
+void Menu::showUserMenu(ContainerType cT)
+{
+}

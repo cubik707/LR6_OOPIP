@@ -1,5 +1,10 @@
 #include "WebApp.h"
 
+WebApp::WebApp()
+    : name("-"), creator("-"), count_of_users(0), rating(0.0)
+{
+}
+
 WebApp::WebApp(const string& name, const string& creator, int count_of_users, double rating)
 	: name(name), creator(creator), count_of_users(count_of_users), rating(rating)
 {
