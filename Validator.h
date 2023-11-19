@@ -13,3 +13,4 @@ public:
 	static string getValidStr();
 	static void toLowercase(std::string& str);
 };
+

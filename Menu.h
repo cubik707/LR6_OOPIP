@@ -1,8 +1,13 @@
 #pragma once
+#include <iostream>
+#include "WebAppContainer.h"
+#include "Validator.h"
 
+using namespace std;
 class Menu
 {
 public:
-	void displayMenu();
+	void showContainerMenu();
+	void showUserMenu();
 };
 
