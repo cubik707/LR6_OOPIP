@@ -1,5 +1,6 @@
 #pragma once
 #include "WebApp.h"
+#include "Validator.h"
 #include <vector>
 #include <list>
 #include <array>
@@ -22,5 +23,9 @@ private:
 public:
 	void readFromFile(ContainerType cT);
 	void fillContainer(ifstream& file, ContainerType cT);
+	
+	void printContainer(ContainerType cT);
+	void printTableFields(int length);
+
 };
 

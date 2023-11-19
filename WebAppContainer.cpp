@@ -20,6 +20,46 @@ void WebAppContainer::readFromFile(ContainerType cT)
     }
 }
 
+void WebAppContainer::printTableFields(int length)
+{
+    printLine(length);
+    cout << setw(5) << "| №" << setw(20) << "| Название";
+    cout << setw(20) << "| Создатель";
+    cout << setw(15) << "| Пользователи";
+    cout << setw(15) << "| Рейтинг" << "|" << endl;
+    printLine(length);
+}
+
+void WebAppContainer::printContainer(ContainerType cT)
+{
+    int length = 89, i = 1;
+
+    printTableFields(length);
+
+    switch (cT) {
+    case ContainerType::Vector:
+        for (auto& app : apps_vector) {
+            cout << left << setw(5) << "| " + to_string(i++);
+            app.print();
+        }
+        break;
+
+    case ContainerType::List:
+        for (auto& app : apps_list) {
+            cout << left << setw(5) << "| " + to_string(i++);
+            app.print();
+        }
+        break;
+
+    case ContainerType::Array:
+        for (const auto& app : app_array) {
+            cout << left << setw(5) << "| " + to_string(i++);
+            app.print();
+        }
+        break;
+    }
+}
+
 void WebAppContainer::fillContainer(ifstream& file, ContainerType cT)
 {
     WebApp webApp;
