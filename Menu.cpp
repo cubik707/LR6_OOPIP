@@ -58,7 +58,7 @@ void Menu::showUserMenu(ContainerType cT)
 			editWebApp(cT);
 			break;
 		case 5:
-
+			searchWebApp(cT);
 			break;
 		case 6:
 			
@@ -163,8 +163,8 @@ void Menu::editMenu(ContainerType cT, int index)
 		cout << "3 - Количество пользователей" << endl;
 		cout << "4 - Рейтинг" << endl;
 		cout << "0 - Назад" << endl;
-		int choice = Validator::getIntVar(0, 6);
-		string name, creator,
+		int choice = Validator::getIntVar(0, 4);
+		string name, creator;
 		int count_of_users;
 		double rating;
 		switch (choice) {
@@ -189,6 +189,48 @@ void Menu::editMenu(ContainerType cT, int index)
 			cout << "Введите новый рейтнг: ";
 			rating = Validator::getDoubleVar(0, 10);
 			WebAppContainer::getInstance()->editRating(index, cT, rating);
+			break;
+		case 0:
+			return;
+		}
+	}
+}
+
+void Menu::searchWebApp(ContainerType cT)
+{
+	while (true)
+	{
+		cout << left << "По чему вы хотите произвести поиск: " << endl;
+		cout << "1 - Имя" << endl;
+		cout << "2 - Производитель" << endl;
+		cout << "0 - Назад" << endl;
+		int choice = Validator::getIntVar(0, 2);
+		string name, creator;
+		int index;
+		switch (choice) {
+		case 1:
+			cout << "Введите новое имя: ";
+			name = Validator::getValidStr();
+			Validator::convert(name);
+			index = WebAppContainer::getInstance()->searchByName(name, cT);
+			if (index != -1) {
+				WebAppContainer::getInstance()->printContainerItem(cT, index);
+			}
+			else {
+				cout << "Приложение с таким названием не найдено!" << endl;
+			}
+			break;
+		case 2:
+			cout << "Введите нового производителя: ";
+			creator = Validator::getValidStr();
+			Validator::convert(creator);
+			index = WebAppContainer::getInstance()->searchByCreator(creator, cT);
+			if (index != -1) {
+				WebAppContainer::getInstance()->printContainerItem(cT, index);
+			}
+			else {
+				cout << "Приложение с таким производителем не найдено!" << endl;
+			}
 			break;
 		case 0:
 			return;

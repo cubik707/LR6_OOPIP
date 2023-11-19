@@ -14,5 +14,6 @@ public:
 	void removeWebApp(ContainerType cT);
 	void editWebApp(ContainerType cT);
 	void editMenu(ContainerType cT, int index);
+	void searchWebApp(ContainerType cT);
 };
 

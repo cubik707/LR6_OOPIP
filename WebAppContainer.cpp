@@ -88,13 +88,82 @@ void WebAppContainer::removeFromArray(int index) {
 
 int WebAppContainer::searchByName(const string& name, ContainerType cT)
 {
+    if (cT == ContainerType::Vector) {
+        auto it = find_if(apps_vector.begin(), apps_vector.end(),
+            [&name](const WebApp& app) { return app.getName() == name; });
+        if (it != apps_vector.end()) {
+            return distance(apps_vector.begin(), it);
+        }
+        return -1;
+    }
+    if (cT == ContainerType::List) {
+        auto it = find_if(apps_list.begin(), apps_list.end(),
+            [&name](const WebApp& app) { return app.getName() == name; });
+        if (it != apps_list.end()) {
+            return distance(apps_list.begin(), it);
+        }
+        return -1;
+    }
+    if (cT == ContainerType::Array) {
+        for (int i = 0; i < current_arr_index; ++i) {
+            if (app_array[i].getName() == name) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+int WebAppContainer::searchByCreator(const string& creator, ContainerType cT)
+{
+    if (cT == ContainerType::Vector) {
+        auto it = find_if(apps_vector.begin(), apps_vector.end(),
+            [&creator](const WebApp& app) { return app.getCreator() == creator; });
+        if (it != apps_vector.end()) {
+            return distance(apps_vector.begin(), it);
+        }
+        return -1;
+    }
+    if (cT == ContainerType::List) {
+        auto it = find_if(apps_list.begin(), apps_list.end(),
+            [&creator](const WebApp& app) { return app.getCreator() == creator; });
+        if (it != apps_list.end()) {
+            return distance(apps_list.begin(), it);
+        }
+        return -1;
+    }
+    if (cT == ContainerType::Array) {
+        for (int i = 0; i < current_arr_index; ++i) {
+            if (app_array[i].getCreator() == creator) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+void WebAppContainer::printContainerItem(ContainerType cT, int index)
+{
+    int length = 74;
+    printTableFields(length);
     switch (cT) {
     case ContainerType::Vector:
-        return findNameInVector(name);
+        apps_vector[index].print();
+        break;
+
     case ContainerType::List:
-        return findNameInList(name);
+    {
+        auto it = apps_list.begin();
+        advance(it, index);
+        it->print();
+    }
+    break;
+
     case ContainerType::Array:
-        return findNameInArray(name);
+        if (index >= 0 && index < current_arr_index) {
+            app_array[index].print();
+        }
+        break;
     }
 }
 
@@ -182,34 +251,6 @@ void WebAppContainer::editRating(int index, ContainerType cT, double rating)
             app_array[index].setRating(rating);
         }
     }
-}
-
-int WebAppContainer::findNameInVector(const string& name) {
-    auto it = find_if(apps_vector.begin(), apps_vector.end(),
-        [&name](const WebApp& app) { return app.getName() == name; });
-    if (it != apps_vector.end()) {
-        return distance(apps_vector.begin(), it);
-    }
-    return -1;
-}
-
-
-int WebAppContainer::findNameInList(const string& name) {
-    auto it = find_if(apps_list.begin(), apps_list.end(),
-        [&name](const WebApp& app) { return app.getName() == name; });
-    if (it != apps_list.end()) {
-        return distance(apps_list.begin(), it);
-    }
-    return -1;
-}
-
-int WebAppContainer::findNameInArray(const string& name) {
-    for (int i = 0; i < current_arr_index; ++i) {
-        if (app_array[i].getName() == name) {
-            return i;
-        }
-    }
-    return -1;
 }
 
 

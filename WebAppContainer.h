@@ -45,15 +45,22 @@ public:
 	void editCreator(int index, ContainerType cT, string& creator);
 	void editCountOfUsers(int index, ContainerType cT, int count_of_users);
 	void editRating(int index, ContainerType cT, double rating);
-	//void editInList()
 
 	int searchByName(const string& name, ContainerType cT);
-	int findNameInVector(const string& name);
-	int findNameInList(const string& name);
-	int findNameInArray(const string& name);
+	int searchByCreator(const string& creator, ContainerType cT);
 	
 	void printContainer(ContainerType cT);
 	void printTableFields(int length);
+	void printContainerItem(ContainerType cT, int index);
 
+	vector<WebApp>& getVector() {
+		return apps_vector;
+	}
+	list<WebApp>& getList() {
+		return apps_list;
+	}
+	array<WebApp, 20>& getArray() {
+		return app_array;
+	}
 };
 
