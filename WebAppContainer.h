@@ -22,7 +22,7 @@ private:
 	int current_arr_index;
 
 	static WebAppContainer* instance;
-	WebAppContainer() {};
+	WebAppContainer() { current_arr_index = 0; };
 public:
 	static WebAppContainer* getInstance();
 	WebAppContainer(const WebAppContainer&) = delete;

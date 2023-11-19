@@ -1,5 +1,22 @@
 #include "WebAppContainer.h"
 
+WebAppContainer* WebAppContainer::instance = nullptr;
+
+WebAppContainer* WebAppContainer::getInstance() {
+    if (instance == nullptr) {
+        instance = new WebAppContainer();
+    }
+    return instance;
+}
+
+WebAppContainer::~WebAppContainer()
+{
+    if (instance) {
+        delete instance;
+        instance = nullptr;
+    }
+}
+
 void WebAppContainer::readFromFile(ContainerType cT)
 {
     ifstream file;
