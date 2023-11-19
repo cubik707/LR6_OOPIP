@@ -85,3 +85,10 @@ void Validator::toLowercase(std::string& str)
 		c = std::tolower(static_cast<unsigned char>(c));
 	}
 }
+
+void printLine(int length)
+{
+	std::cout << "+" << std::setfill('-') << std::setw(length) << "";
+	std::cout << std::setfill(' ');
+	std::cout << "+" << std::endl;
+}

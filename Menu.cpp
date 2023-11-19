@@ -2,15 +2,16 @@
 
 void Menu::showContainerMenu()
 {
-
+	printLine(40);
 	cout << left << "Выберите контейнер: " << endl;
-	cout << "1 - Администратор" << endl;
-	cout << "2 - Пользователь" << endl;
+	cout << "1 - Vector" << endl;
+	cout << "2 - List" << endl;
+	cout << "3 - Array" << endl;
 	cout << "0 - Выход" << endl;
-	choice = validInt.getVar(0, 2);
+	printLine(40);
+	int choice = Validator::getIntVar(0, 3);
 
 
-	Inventory* inventory = Inventory::getInstance();
 	switch (choice) {
 	case 1:
 		admin->displayMenu();

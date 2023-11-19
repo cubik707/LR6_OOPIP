@@ -14,3 +14,4 @@ public:
 	static void toLowercase(std::string& str);
 };
 
+void printLine(int length);
