@@ -49,7 +49,7 @@ void Menu::showUserMenu(ContainerType cT)
 			WebAppContainer::getInstance()->printContainer(cT);
 			break;
 		case 2:
-
+			addWebApp(cT);
 			break;
 		case 3:
 
@@ -57,6 +57,39 @@ void Menu::showUserMenu(ContainerType cT)
 		case 0:
 			return;
 		}
+	}
+}
+
+void Menu::addWebApp(ContainerType cT)
+{
+	string name, creator;
+	int count_of_users;
+	double ratity;
+	cout << "¬ведите название веб-приложени€: ";
+	name = Validator::getValidStr();
+	Validator::toLowercase(name);
+
+	cout << "¬ведите производител€: ";
+	creator = Validator::getValidStr();
+	Validator::toLowercase(creator);
+
+	cout << "¬ведите количество пользователей: ";
+	count_of_users = Validator::getIntVar(0, INT_MAX);
+
+	cout << "¬ведите рейтинг приложени€: ";
+	ratity = Validator::getDoubleVar(0, 10);
+	WebApp webApp(name, creator, count_of_users, ratity);
+
+	switch (cT) {
+	case ContainerType::Vector:
+		WebAppContainer::getInstance()->addToVector(webApp);
+		break;
+	case ContainerType::List:
+		WebAppContainer::getInstance()->addToList(webApp);
+		break;
+	case ContainerType::Array:
+		WebAppContainer::getInstance()->addToArray(webApp);
+		break;
 	}
 }
 

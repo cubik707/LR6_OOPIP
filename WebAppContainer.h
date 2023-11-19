@@ -31,6 +31,10 @@ public:
 
 	void readFromFile(ContainerType cT);
 	void fillContainer(ifstream& file, ContainerType cT);
+
+	void addToVector(const WebApp& webApp);
+	void addToList(const WebApp& webApp);
+	void addToArray(const WebApp& webApp);
 	
 	void printContainer(ContainerType cT);
 	void printTableFields(int length);

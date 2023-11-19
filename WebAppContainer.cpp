@@ -47,6 +47,21 @@ void WebAppContainer::printTableFields(int length)
     printLine(length);
 }
 
+void WebAppContainer::addToList(const WebApp& webApp)
+{
+    apps_list.push_back(webApp);
+}
+
+void WebAppContainer::addToArray(const WebApp& webApp)
+{
+    if (current_arr_index < app_array.size()) {
+        app_array[current_arr_index++] = webApp;
+    }
+    else {
+        cout << "Недостаточно места в array!" << endl;
+    }
+}
+
 void WebAppContainer::printContainer(ContainerType cT)
 {
     int length = 74, i = 1;
@@ -76,6 +91,11 @@ void WebAppContainer::printContainer(ContainerType cT)
         break;
     }
     printLine(length);
+}
+
+void WebAppContainer::addToVector(const WebApp& webApp)
+{
+    apps_vector.push_back(webApp);
 }
 
 void WebAppContainer::fillContainer(ifstream& file, ContainerType cT)

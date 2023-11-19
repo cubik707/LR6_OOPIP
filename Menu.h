@@ -9,5 +9,7 @@ class Menu
 public:
 	void showContainerMenu();
 	void showUserMenu(ContainerType cT);
+
+	void addWebApp(ContainerType cT);
 };
 
