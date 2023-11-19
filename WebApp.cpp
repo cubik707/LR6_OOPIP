@@ -16,7 +16,7 @@ void WebApp::print() const
    cout << "| " << setw(18) << name;
    cout << "| " << setw(18) << creator;
    cout << "| " << setw(13) << count_of_users;
-   cout << "| " << fixed << setprecision(2) << setw(13) << rating << "|" <
+   cout << "| " << fixed << setprecision(2) << setw(13) << rating << "|" << endl;
     cout.unsetf(ios::left);
 }
 

@@ -1,0 +1,10 @@
+QuantumWeb|NebulaTech|500000|4.8
+CelestialSurfer|GalacticSoft|250000|4.2
+DreamVoyager|CosmoApps|1000000|4.5
+AetherCraft|StellarInnovations|80000|4.7
+ChronoNaut|TimeBenders|1500000|4.9
+AquaSprint|AtlantisCo|120000|4.1
+InfernoForge|VolcanoStudios|30000|3.8
+ZenithStrider|EtherealSystems|60000|4.3
+NebulaQuest|StarPioneers|90000|4.6
+SkySculptor|CloudMasters|180000|4.4
