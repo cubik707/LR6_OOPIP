@@ -5,6 +5,7 @@
 #include <list>
 #include <array>
 #include <iterator>
+#include <algorithm>
 
 enum class ContainerType
 {
@@ -48,6 +49,11 @@ public:
 
 	int searchByName(const string& name, ContainerType cT);
 	int searchByCreator(const string& creator, ContainerType cT);
+
+	void sortByName(ContainerType cT);
+	void sortByCreator(ContainerType cT);
+	void sortByCountOfUsers(ContainerType cT);
+	void sortByRating(ContainerType cT);
 	
 	void printContainer(ContainerType cT);
 	void printTableFields(int length);

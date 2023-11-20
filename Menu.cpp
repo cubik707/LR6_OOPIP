@@ -61,7 +61,7 @@ void Menu::showUserMenu(ContainerType cT)
 			searchWebApp(cT);
 			break;
 		case 6:
-			
+			sortMenu(cT);
 			break;
 		case 0:
 			return;
@@ -235,6 +235,37 @@ void Menu::searchWebApp(ContainerType cT)
 		case 0:
 			return;
 		}
+	}
+}
+
+void Menu::sortMenu(ContainerType cT)
+{
+	while (true) {
+		cout << "Меню сортировки: " << endl;
+		cout << "1 - По названию" << endl;
+		cout << "2 - По создателю" << endl;
+		cout << "3 - По количеству пользователей" << endl;
+		cout << "4 - По рейтингу" << endl;
+		cout << "0 - Назад" << endl;
+		int choice = Validator::getIntVar(0, 4);
+
+		switch (choice) {
+		case 1:
+			WebAppContainer::getInstance()->sortByName(cT);
+			break;
+		case 2:
+			WebAppContainer::getInstance()->sortByCreator(cT);
+			break;
+		case 3:
+			WebAppContainer::getInstance()->sortByCountOfUsers(cT);
+			break;
+		case 4:
+			WebAppContainer::getInstance()->sortByRating(cT);
+			break;
+		case 0:
+			return;
+		}
+		WebAppContainer::getInstance()->printContainer(cT);
 	}
 }
 

@@ -15,5 +15,6 @@ public:
 	void editWebApp(ContainerType cT);
 	void editMenu(ContainerType cT, int index);
 	void searchWebApp(ContainerType cT);
+	void sortMenu(ContainerType cT);
 };
 

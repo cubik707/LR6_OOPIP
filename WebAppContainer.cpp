@@ -41,7 +41,7 @@ void WebAppContainer::printTableFields(int length)
 {
     printLine(length);
     cout << setw(5) << "| №" << setw(20) << "| Название";
-    cout << setw(20) << "| Создатель";
+    cout << setw(22) << "| Создатель";
     cout << setw(15) << "| Пользователи";
     cout << setw(15) << "| Рейтинг" << "|" << endl;
     printLine(length);
@@ -151,10 +151,11 @@ int WebAppContainer::searchByCreator(const string& creator, ContainerType cT)
 
 void WebAppContainer::printContainerItem(ContainerType cT, int index)
 {
-    int length = 74;
+    int length = 76, i = 1;
     printTableFields(length);
     switch (cT) {
     case ContainerType::Vector:
+        cout << left << setw(5) << "| " + to_string(i++);
         apps_vector[index].print();
         break;
 
@@ -162,16 +163,19 @@ void WebAppContainer::printContainerItem(ContainerType cT, int index)
     {
         auto it = apps_list.begin();
         advance(it, index);
+        cout << left << setw(5) << "| " + to_string(i++);
         it->print();
     }
     break;
 
     case ContainerType::Array:
         if (index >= 0 && index < current_arr_index) {
+            cout << left << setw(5) << "| " + to_string(i++);
             app_array[index].print();
         }
         break;
     }
+    printLine(length);
 }
 
 void WebAppContainer::editName(int index, ContainerType cT, string& name)
@@ -280,10 +284,109 @@ void WebAppContainer::editRating(int index, ContainerType cT, double rating)
     }
 }
 
+void WebAppContainer::sortByName(ContainerType cT)
+{
+    switch (cT) {
+    case ContainerType::Vector:
+        sort(apps_vector.begin(), apps_vector.end(),
+            [](const WebApp& a, const WebApp& b) {
+                return a.getName() < b.getName();
+            });
+        break;
+
+    case ContainerType::List:
+        apps_list.sort([](const WebApp& a, const WebApp& b) {
+            return a.getName() < b.getName();
+            });
+        break;
+
+    case ContainerType::Array:
+        sort(app_array.begin(), app_array.begin() + current_arr_index,
+            [](const WebApp& a, const WebApp& b) {
+                return a.getName() < b.getName();
+            });
+        break;
+    }
+}
+
+void WebAppContainer::sortByCreator(ContainerType cT)
+{
+    switch (cT) {
+    case ContainerType::Vector:
+        sort(apps_vector.begin(), apps_vector.end(),
+            [](const WebApp& a, const WebApp& b) {
+                return a.getCreator() < b.getCreator();
+            });
+        break;
+
+    case ContainerType::List:
+        apps_list.sort([](const WebApp& a, const WebApp& b) {
+            return a.getCreator() < b.getCreator();
+            });
+        break;
+
+    case ContainerType::Array:
+        sort(app_array.begin(), app_array.begin() + current_arr_index,
+            [](const WebApp& a, const WebApp& b) {
+                return a.getCreator() < b.getCreator();
+            });
+        break;
+    }
+}
+
+void WebAppContainer::sortByCountOfUsers(ContainerType cT)
+{
+    switch (cT) {
+    case ContainerType::Vector:
+        sort(apps_vector.begin(), apps_vector.end(),
+            [](const WebApp& a, const WebApp& b) {
+                return a.getCountOfUsers() < b.getCountOfUsers();
+            });
+        break;
+
+    case ContainerType::List:
+        apps_list.sort([](const WebApp& a, const WebApp& b) {
+            return a.getCountOfUsers() < b.getCountOfUsers();
+            });
+        break;
+
+    case ContainerType::Array:
+        sort(app_array.begin(), app_array.begin() + current_arr_index,
+            [](const WebApp& a, const WebApp& b) {
+                return a.getCountOfUsers() < b.getCountOfUsers();
+            });
+        break;
+    }
+}
+
+void WebAppContainer::sortByRating(ContainerType cT)
+{
+    switch (cT) {
+    case ContainerType::Vector:
+        sort(apps_vector.begin(), apps_vector.end(),
+            [](const WebApp& a, const WebApp& b) {
+                return a.getRating() < b.getRating();
+            });
+        break;
+
+    case ContainerType::List:
+        apps_list.sort([](const WebApp& a, const WebApp& b) {
+            return a.getRating() < b.getRating();
+            });
+        break;
+
+    case ContainerType::Array:
+        sort(app_array.begin(), app_array.begin() + current_arr_index,
+            [](const WebApp& a, const WebApp& b) {
+                return a.getRating() < b.getRating();
+            });
+        break;
+    }
+}
 
 void WebAppContainer::printContainer(ContainerType cT)
 {
-    int length = 74, i = 1;
+    int length = 76, i = 1;
 
     printTableFields(length);
 
