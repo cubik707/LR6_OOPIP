@@ -88,7 +88,8 @@ void WebAppContainer::removeFromArray(int index) {
 
 int WebAppContainer::searchByName(const string& name, ContainerType cT)
 {
-    if (cT == ContainerType::Vector) {
+    switch (cT) {
+    case ContainerType::Vector: {
         auto it = find_if(apps_vector.begin(), apps_vector.end(),
             [&name](const WebApp& app) { return app.getName() == name; });
         if (it != apps_vector.end()) {
@@ -96,7 +97,7 @@ int WebAppContainer::searchByName(const string& name, ContainerType cT)
         }
         return -1;
     }
-    if (cT == ContainerType::List) {
+    case ContainerType::List: {
         auto it = find_if(apps_list.begin(), apps_list.end(),
             [&name](const WebApp& app) { return app.getName() == name; });
         if (it != apps_list.end()) {
@@ -104,7 +105,7 @@ int WebAppContainer::searchByName(const string& name, ContainerType cT)
         }
         return -1;
     }
-    if (cT == ContainerType::Array) {
+    case ContainerType::Array: {
         for (int i = 0; i < current_arr_index; ++i) {
             if (app_array[i].getName() == name) {
                 return i;
@@ -112,11 +113,14 @@ int WebAppContainer::searchByName(const string& name, ContainerType cT)
         }
         return -1;
     }
+    }
 }
 
 int WebAppContainer::searchByCreator(const string& creator, ContainerType cT)
 {
-    if (cT == ContainerType::Vector) {
+    switch (cT) {
+    case ContainerType::Vector:
+    {
         auto it = find_if(apps_vector.begin(), apps_vector.end(),
             [&creator](const WebApp& app) { return app.getCreator() == creator; });
         if (it != apps_vector.end()) {
@@ -124,7 +128,8 @@ int WebAppContainer::searchByCreator(const string& creator, ContainerType cT)
         }
         return -1;
     }
-    if (cT == ContainerType::List) {
+    case ContainerType::List:
+    {
         auto it = find_if(apps_list.begin(), apps_list.end(),
             [&creator](const WebApp& app) { return app.getCreator() == creator; });
         if (it != apps_list.end()) {
@@ -132,13 +137,15 @@ int WebAppContainer::searchByCreator(const string& creator, ContainerType cT)
         }
         return -1;
     }
-    if (cT == ContainerType::Array) {
+    case ContainerType::Array:
+    {
         for (int i = 0; i < current_arr_index; ++i) {
             if (app_array[i].getCreator() == creator) {
                 return i;
             }
         }
         return -1;
+    }
     }
 }
 
@@ -169,87 +176,107 @@ void WebAppContainer::printContainerItem(ContainerType cT, int index)
 
 void WebAppContainer::editName(int index, ContainerType cT, string& name)
 {
-    if (cT == ContainerType::Vector) {
+    switch (cT) {
+    case ContainerType::Vector:
         if (index >= 0 && index < apps_vector.size()) {
             apps_vector[index].setName(name);
         }
-    }
-    if (cT == ContainerType::List) {
+        break;
+
+    case ContainerType::List: {
         auto it = apps_list.begin();
         advance(it, index);
         if (it != apps_list.end()) {
             it->setName(name);
         }
+        break;
     }
-    if (cT == ContainerType::Array) {
+
+    case ContainerType::Array:
         if (index >= 0 && index < current_arr_index) {
             app_array[index].setName(name);
         }
+        break;
     }
 }
 
 void WebAppContainer::editCreator(int index, ContainerType cT, string& creator)
 {
-    if (cT == ContainerType::Vector) {
+    switch (cT) {
+    case ContainerType::Vector:
         if (index >= 0 && index < apps_vector.size()) {
             apps_vector[index].setCreator(creator);
         }
-    }
-    if (cT == ContainerType::List) {
+        break;
+
+    case ContainerType::List: {
         auto it = apps_list.begin();
         advance(it, index);
         if (it != apps_list.end()) {
             it->setCreator(creator);
         }
+        break;
     }
-    if (cT == ContainerType::Array) {
+
+    case ContainerType::Array:
         if (index >= 0 && index < current_arr_index) {
             app_array[index].setCreator(creator);
         }
+        break;
     }
 }
 
 
 void WebAppContainer::editCountOfUsers(int index, ContainerType cT, int count_of_users)
 {
-    if (cT == ContainerType::Vector) {
+    switch (cT) {
+    case ContainerType::Vector:
         if (index >= 0 && index < apps_vector.size()) {
             apps_vector[index].setCountOfUsers(count_of_users);
         }
-    }
-    if (cT == ContainerType::List) {
+        break;
+
+    case ContainerType::List: {
         auto it = apps_list.begin();
         advance(it, index);
         if (it != apps_list.end()) {
             it->setCountOfUsers(count_of_users);
         }
+        break;
     }
-    if (cT == ContainerType::Array) {
+
+    case ContainerType::Array:
         if (index >= 0 && index < current_arr_index) {
             app_array[index].setCountOfUsers(count_of_users);
         }
+        break;
     }
 }
 
 
 void WebAppContainer::editRating(int index, ContainerType cT, double rating)
 {
-    if (cT == ContainerType::Vector) {
+    switch (cT) {
+    case ContainerType::Vector:
         if (index >= 0 && index < apps_vector.size()) {
             apps_vector[index].setRating(rating);
         }
-    }
-    if (cT == ContainerType::List) {
+        break;
+
+    case ContainerType::List: {
         auto it = apps_list.begin();
         advance(it, index);
         if (it != apps_list.end()) {
             it->setRating(rating);
         }
+        break;
     }
-    if (cT == ContainerType::Array) {
+
+    case ContainerType::Array:
         if (index >= 0 && index < current_arr_index) {
             app_array[index].setRating(rating);
         }
+        break;
     }
 }
 
@@ -293,23 +320,27 @@ void WebAppContainer::addToVector(const WebApp& webApp)
 void WebAppContainer::fillContainer(ifstream& file, ContainerType cT)
 {
     WebApp webApp;
-    if (cT == ContainerType::Vector) {
+    switch (cT) {
+    case ContainerType::Vector:
         apps_vector.clear();
         while (file >> webApp) {
             apps_vector.push_back(webApp);
         }
-    }
-    if (cT == ContainerType::List) {
+        break;
+
+    case ContainerType::List:
         apps_list.clear();
         while (file >> webApp) {
             apps_list.push_back(webApp);
         }
-    }
-    if (cT == ContainerType::Array) {
+        break;
+
+    case ContainerType::Array:
         for (int i = 0; i < app_array.size() and file >> webApp; ++i) {
             app_array[i] = webApp;
             ++current_arr_index;
         }
+        break;
     }
 }
 
